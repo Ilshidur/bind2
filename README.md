@@ -24,5 +24,5 @@ MIT
 
 <p align="center">
   Don't forget to 🌟 Star 🌟 the repo if you like this npm package !<br/>
-  <a href="https://github.com/Ilshidur/express-humans/issues/new">Your feedback is appreciated</a>
+  <a href="https://github.com/Ilshidur/bind2/issues/new">Your feedback is appreciated</a>
 </p>
