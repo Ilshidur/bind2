@@ -1,36 +1,50 @@
-const bind = require('.');
+const test = require('ava');
 
-bind.define();
+const bind2 = require('.');
 
-function test(arg) {
-  this.arg = arg;
+function testFn() {
   return this;
 }
 
-const context = {
-  test: true,
-};
+test('.bind2() - context property', t => {
+  const context = { context: true };
+  const boundFn = bind2(testFn, context);
+  t.is(boundFn.context, context);
+  t.is(testFn.context, undefined);
+});
 
-const boundTest = test.bind(context);
-const bound2Test = test.bind2(context);
-const unbound2Test = bound2Test.unbind();
+test('.bind2() - bound property', t => {
+  const context = { context: true };
+  const boundFn = bind2(testFn, context);
+  t.is(boundFn.bound, true);
+  t.is(testFn.bound, undefined);
+});
 
-console.log('test', test);
-console.log('test.bound', test.bound);
-console.log('test context', test(true));
-console.log('test context', test.context);
-console.log('---');
-console.log('boundTest', boundTest);
-console.log('boundTest.bound', boundTest.bound);
-console.log('boundTest context', boundTest(true));
-console.log('boundTest context', boundTest.context);
-console.log('---');
-console.log('bound2Test', bound2Test);
-console.log('bound2Test.bound', bound2Test.bound);
-console.log('bound2Test context', bound2Test(true));
-console.log('bound2Test context', bound2Test.context);
-console.log('---');
-console.log('unbound2Test', unbound2Test);
-console.log('unbound2Test.bound', unbound2Test.bound);
-console.log('unbound2Test context', unbound2Test(true));
-console.log('unbound2Test context', unbound2Test.context);
+test('.bind2() - function context', t => {
+  const context = { context: true };
+  const boundFn = bind2(testFn, context);
+  t.is(boundFn(), context);
+  t.is(testFn(), this);
+});
+
+test('bound function - unbound property', t => {
+  const context = { context: true };
+  const boundFn = bind2(testFn, context);
+  const unboundFn = boundFn.unbound;
+  t.is(testFn, unboundFn);
+});
+
+test('bound function - unbind()', t => {
+  const context = { context: true };
+  const boundFn = bind2(testFn, context);
+  const unboundFn = boundFn.unbind();
+  t.is(testFn, unboundFn);
+});
+
+test('bound function - bind()', t => {
+  const context = { context: true };
+  const context2 = { context2: true };
+  const boundFn = bind2(testFn, context);
+  const reboundFn = boundFn.bind(context2);
+  t.is(reboundFn.context, context2);
+});

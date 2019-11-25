@@ -12,6 +12,31 @@
 * Additional properties in the function context :
   * `bound` (Boolean). Returns `true` if the function has been bound with `bind2`.
 
+## Examples
+
+```javascript
+const bind2 = require('bind2');
+
+function test() {
+  return this.hello;
+}
+const context = { hello: 'world' };
+
+// Native `bind()`.
+const boundFn = test.bind(context);
+console.log(boundFn.context); // undefined
+console.log(boundFn.bound); // undefined
+console.log(bound2Fn.unbound); // undefined
+console.log(boundFn()); // 'world'
+
+// `bind2()`.
+const bound2Fn = bind2(test, context);
+console.log(bound2Fn.context); // { hello: 'world' }
+console.log(bound2Fn.bound); // true
+console.log(bound2Fn.unbound); // [Function: test]
+console.log(bound2Fn()); // 'world'
+```
+
 ## API
 
 TODO:

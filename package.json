@@ -1,0 +1,27 @@
+{
+  "name": "bind2",
+  "version": "1.0.0",
+  "description": "Enhanced Javascript bind() function.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^2.4.0"
+  },
+  "scripts": {
+    "test": "ava",
+    "watch:test": "ava --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ilshidur/bind2.git"
+  },
+  "keywords": [
+    "bind"
+  ],
+  "author": "Ilshidur <ilshidur@gmail.com> (https://www.nicolas-coutin.fr)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ilshidur/bind2/issues"
+  },
+  "homepage": "https://github.com/Ilshidur/bind2#readme"
+}
