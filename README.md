@@ -6,11 +6,14 @@
 
 * **Does not break the original `bind` API**.
 * Immutable.
-* New properties assigned to each bound function :
+* New properties assigned to each bound function (using `bind2()`) :
   * `unbind()` (Function). Will return the original unbound function.
+  * `unbound` (Function). Reference to the original unbound function.
   * `context` (Any). Get the function context without executing it.
-* Additional properties in the function context :
   * `bound` (Boolean). Returns `true` if the function has been bound with `bind2`.
+  * `bind2(context, ...parameters)` (Function). Re-bind the function. *(Note : `bind()` still exists.)*
+* New properties in the function context :
+  * `this.bound` (Boolean). Returns `true` if the function has been bound with `bind2`.
 
 ## Examples
 
@@ -27,6 +30,7 @@ const boundFn = test.bind(context);
 console.log(boundFn.context); // undefined
 console.log(boundFn.bound); // undefined
 console.log(bound2Fn.unbound); // undefined
+console.log(bound2Fn.unbind()); // TypeError: bound2Fn.unbind is not a function
 console.log(boundFn()); // 'world'
 
 // `bind2()`.
@@ -34,6 +38,7 @@ const bound2Fn = bind2(test, context);
 console.log(bound2Fn.context); // { hello: 'world' }
 console.log(bound2Fn.bound); // true
 console.log(bound2Fn.unbound); // [Function: test]
+console.log(bound2Fn.unbind()); // [Function: test]
 console.log(bound2Fn()); // 'world'
 ```
 

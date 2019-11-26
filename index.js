@@ -1,20 +1,26 @@
-const unbind = (fn) => {
-  return fn.unbound;
-};
-
 const bound = (fn) => fn.hasOwnProperty('context');
 
 const bind2 = (fn, context, ...args) => {
-  const doBind = (f, context, ...args) => f.bind.isBind2 ? bind2() : fn.bind;
-  const newFn = fn.bind(context);
+  const doBind = (useBind2, f, context, ...args) => f.bind.isBind2 && useBind2
+    ? bind2(f, context, ...args)
+    : f.bind(context, ...args);
+
+  const newFn = doBind(false, fn, context, ...args);
+
   newFn.unbound = fn;
-  newFn.unbind = () => unbind(newFn);
+  newFn.unbind = () => {
+    return newFn.unbound;
+  };
+
   newFn.context = context;
   newFn.bound = newFn.bound || bound(newFn);
-  // TODO:
-  newFn.bind = (context, ...args) => bind2(newFn, context, ...args);
+
+  newFn.bind.isBind2 = true;
+  newFn.bind2 = (context, ...args) => doBind(true, newFn, context, ...args);
+
   return newFn;
 };
+
 bind2.isBind2 = true;
 
 const wrap = (prototype) => {
