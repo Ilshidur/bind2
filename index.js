@@ -1,6 +1,13 @@
 const bound = (fn) => fn.hasOwnProperty('context');
 
 const bind2 = (fn, context, ...args) => {
+  if (typeof fn !== 'function') {
+    throw new TypeError('Bind2 must be called on a function');
+  }
+  if (typeof context === 'undefined') {
+    return fn.bind(this, ...args);
+  }
+
   const doBind = (useBind2, f, context, ...args) => f.bind.isBind2 && useBind2
     ? bind2(f, context, ...args)
     : f.bind(context, ...args);
