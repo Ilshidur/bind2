@@ -2,18 +2,20 @@
 
 > Enhanced Javascript `bind()` function.
 
+## Why ?
+
+Because the `[[BoundThis]]` internal properties of a bound function are not programmatically accessible, and you might need to get the context of a function without executing it. This lib also provides some tooling around the `bind` mechanism.
+
 ## Features
 
-* **Does not break the original `bind` API**.
-* Immutable.
+* **Does not break the original `bind` API.**
+* **Immutable.**
 * New properties assigned to each bound function (using `bind2()`) :
   * `unbind()` (Function). Will return the original unbound function.
   * `unbound` (Function). Reference to the original unbound function.
   * `context` (Any). Get the function context without executing it.
   * `bound` (Boolean). Returns `true` if the function has been bound with `bind2`.
   * `bind2(context, ...parameters)` (Function). Re-bind the function. *(Note : `bind()` still exists.)*
-* New properties in the function context :
-  * `this.bound` (Boolean). Returns `true` if the function has been bound with `bind2`.
 
 ## Examples
 
@@ -44,7 +46,48 @@ console.log(bound2Fn()); // 'world'
 
 ## API
 
-TODO:
+```javascript
+const bind2 = require('bind2');
+```
+
+### `bind2(fn, thisArg[, arg1[, arg2[, ...]]])`
+
+This function is a wrapper the native `bind()` function.
+
+* **Arguments :**
+  * `fn` *(Function)* : the function to bind.
+  * `thisArg` : The value to be passed as the `this` parameter to the target function when the bound function is called. The value is ignored if the bound function is constructed using the `new` operator. When using `bind` to create a function (supplied as a callback) inside a `setTimeout`, any primitive value passed as `thisArg` is converted to object. If no arguments are provided to `bind`, the `this` of the executing scope is treated as the `thisArg` for the new function.
+  * `arg1, arg2, ...` : Arguments to prepend to arguments provided to the bound function when invoking the target function.
+
+* **Returns :** a copy of the given function with the specified this value and initial arguments.
+
+### `bind2.fn(fn, thisArg[, arg1[, arg2[, ...]]])`
+
+Alias to `bind2(fn, thisArg[, arg1[, arg2[, ...]]])`.
+
+### `bind2.define()`
+
+Alias to `bind2.wrap(Function.prototype)`.
+
+This will mutate the `Function`'s prototype, thus adding the `bind2()` and `bound` properties to every function. It is recommended to execute this once, in the beginning of the script.
+
+e.g.:
+
+```javascript
+const bind2 = require('bind2');
+
+// Wrap `Function.prototype`.
+bind2.define();
+
+function test() {
+  return this.hello;
+}
+const context = { hello: 'world' };
+
+// Use the new `bind2()` function.
+const boundFn = test.bind2(context);
+console.log(boundFn.context); // { hello: 'world' }
+```
 
 ## License
 
