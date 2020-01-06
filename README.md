@@ -6,6 +6,12 @@
 
 Because the `[[BoundThis]]` internal properties of a bound function are not programmatically accessible, and you might need to get the context of a function without executing it. This lib also provides some tooling around the `bind` mechanism.
 
+## Install
+
+```bash
+npm install bind2
+```
+
 ## Features
 
 * **Does not break the original `bind` API.**
