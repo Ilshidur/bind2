@@ -1,5 +1,16 @@
 # bind2
 
+![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)
+
+[![npm version][version-badge]][version-url]
+[![Known Vulnerabilities][vulnerabilities-badge]][vulnerabilities-url]
+[![dependency status][dependency-badge]][dependency-url]
+[![devdependency status][devdependency-badge]][devdependency-url]
+[![Code Climate][maintainability-badge]][maintainability-url]
+[![downloads][downloads-badge]][downloads-url]
+
+[![NPM][npm-stats-badge]][npm-stats-url]
+
 > Enhanced Javascript `bind()` function.
 
 ## Why ?
@@ -105,3 +116,20 @@ MIT
   Don't forget to 🌟 Star 🌟 the repo if you like this npm package !<br/>
   <a href="https://github.com/Ilshidur/bind2/issues/new">Your feedback is appreciated</a>
 </p>
+
+[version-badge]: https://img.shields.io/npm/v/bind2.svg
+[version-url]: https://www.npmjs.com/package/bind2
+[vulnerabilities-badge]: https://snyk.io/test/npm/bind2/badge.svg
+[vulnerabilities-url]: https://snyk.io/test/npm/bind2
+[dependency-badge]: https://david-dm.org/ilshidur/bind2.svg
+[dependency-url]: https://david-dm.org/ilshidur/bind2
+[devdependency-badge]: https://david-dm.org/ilshidur/bind2/dev-status.svg
+[devdependency-url]: https://david-dm.org/ilshidur/bind2#info=devDependencies
+[build-badge]: https://travis-ci.org/Ilshidur/bind2.svg
+[build-url]: https://travis-ci.org/Ilshidur/bind2
+[maintainability-badge]: https://api.codeclimate.com/v1/badges/cc9c243c8876cb339a0c/maintainability
+[maintainability-url]: https://codeclimate.com/github/Ilshidur/bind2/maintainability
+[downloads-badge]: https://img.shields.io/npm/dt/bind2.svg
+[downloads-url]: https://www.npmjs.com/package/bind2
+[npm-stats-badge]: https://nodei.co/npm/bind2.png?downloads=true&downloadRank=true
+[npm-stats-url]: https://nodei.co/npm/bind2
