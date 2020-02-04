@@ -69,12 +69,12 @@ const bind2 = require('bind2');
 
 ### `bind2(fn, thisArg[, arg1[, arg2[, ...]]])`
 
-This function is a wrapper the native `bind()` function.
+This function is a wrapper of the native `bind()` function.
 
 * **Arguments :**
   * `fn` *(Function)* : the function to bind.
-  * `thisArg` : The value to be passed as the `this` parameter to the target function when the bound function is called. The value is ignored if the bound function is constructed using the `new` operator. When using `bind` to create a function (supplied as a callback) inside a `setTimeout`, any primitive value passed as `thisArg` is converted to object. If no arguments are provided to `bind`, the `this` of the executing scope is treated as the `thisArg` for the new function.
-  * `arg1, arg2, ...` : Arguments to prepend to arguments provided to the bound function when invoking the target function.
+  * `thisArg` : the value to be passed as the `this` parameter to the target function when the bound function is called. The value is ignored if the bound function is constructed using the `new` operator. When using `bind` to create a function (supplied as a callback) inside a `setTimeout`, any primitive value passed as `thisArg` is converted to object. If no arguments are provided to `bind`, the `this` of the executing scope is treated as the `thisArg` for the new function.
+  * `arg1, arg2, ...` : arguments to prepend to arguments provided to the bound function when invoking the target function.
 
 * **Returns :** a copy of the given function with the specified this value and initial arguments.
 
